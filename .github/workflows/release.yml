@@ -88,14 +88,22 @@ jobs:
         run: |
           v=$(python -c "from hader.version import VERSION; print(VERSION)")
           [ "v$v" = "${{ inputs.version }}" ] || { echo "::error::asked for ${{ inputs.version }} but the program is $v"; exit 1; }
-      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+      # the compiler's cache brings later builds from about 45 minutes down to a few; kept even when a
+      # later step fails, so a second try does not compile everything again
+      - uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: ~\AppData\Local\Nuitka\Nuitka\Cache
-          key: nuitka-${{ runner.os }}-4.2.2-${{ hashFiles('src/requirements.txt') }}-${{ inputs.version }}
+          key: nuitka-${{ runner.os }}-4.2.2-${{ hashFiles('src/requirements.txt') }}-${{ github.run_id }}
           restore-keys: nuitka-${{ runner.os }}-4.2.2-${{ hashFiles('src/requirements.txt') }}-
       - name: Build Hader.exe (compiled)
+        id: build
         working-directory: src
         run: python tools/build_exe.py
+      - uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        if: always() && steps.build.outcome == 'success'
+        with:
+          path: ~\AppData\Local\Nuitka\Nuitka\Cache
+          key: nuitka-${{ runner.os }}-4.2.2-${{ hashFiles('src/requirements.txt') }}-${{ github.run_id }}
       - name: Smoke test (the server starts and answers; no source shipped)
         working-directory: src
         shell: pwsh
@@ -111,8 +119,9 @@ jobs:
           Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue
           if (-not $ok) { throw "Hader.exe did not answer" }
           if (Get-ChildItem -Recurse dist\Hader -Include *.py) { throw "a source file would be shipped" }
-          & dist\Hader\Hader.exe --tool reset_password admin Smoke-Test-2026
-          if ($LASTEXITCODE -ne 0) { throw "helpers through Hader.exe failed" }
+          # Hader.exe is a windowed program: wait for it explicitly and read its exit code
+          $t = Start-Process dist\Hader\Hader.exe -ArgumentList "--tool", "reset_password", "admin", "Smoke-Test-2026" -Wait -PassThru -NoNewWindow
+          if ($t.ExitCode -ne 0) { throw "helpers through Hader.exe failed ($($t.ExitCode))" }
       - name: Installer (Inno Setup)
         working-directory: src
         shell: pwsh
