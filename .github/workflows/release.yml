@@ -51,7 +51,7 @@ jobs:
         timeout-minutes: 20
         run: |
           python -m pip install -q -r requirements-dev.txt pytest-timeout
-          python -m pytest -v --tb=no -p no:warnings --timeout=180 --timeout-method=thread tests
+          python -m pytest -v --tb=no -p no:warnings --timeout=180 --timeout-method=signal tests
       - if: always()
         run: rm -rf src
 
