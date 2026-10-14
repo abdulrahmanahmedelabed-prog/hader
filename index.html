@@ -152,6 +152,14 @@ details p { margin: 0 0 16px; color: var(--muted); }
 .final h2 { margin: 0 0 10px; }
 .final p { color: #c6d4e1; margin: 0 auto 24px; max-width: 620px; }
 .final .cta { justify-content: center; }
+.final .rel-list { max-width: 620px; margin: 26px auto 0; text-align: start; }
+.final .rel-list h3 { margin: 0 0 10px; font-size: 17px; }
+.final .rel-list ul { list-style: none; margin: 0; padding: 0; }
+.final .rel-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,.12); color: #dbe6ef; }
+.final .rel-list li b { color: #fff; }
+.final .rel-list li small { color: #9fb3c6; }
+.final .rel-list li a { margin-inline-start: auto; color: #7fe3d8; }
+
 .final .steps-dl { text-align: start; max-width: 560px; margin: 26px auto 0; padding-inline-start: 22px; color: #dbe6ef; line-height: 1.9; }
 .final .steps-dl b, .final .steps-dl bdi { color: #fff; }
 .final .steps-dl bdi { overflow-wrap: anywhere; word-break: break-all; }
@@ -371,9 +379,36 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
     <li>يفتح «مدير خادم حاضر» بعد التثبيت: اضغط «فتح البرنامج» وادخل بالمستخدم <bdi>admin</bdi> وكلمة المرور الأولى الظاهرة فيه، ثم غيّرها.</li>
     <li>للتفعيل بعد التجربة: «حول البرنامج» ← أرسل «رمز الجهاز» إلينا والصق المفتاح الذي يصلك.</li>
   </ol>
-  <p class="dl-meta">الإصدار 1.5 · ويندوز 10 و11 (64 بت) · <a href="https://github.com/abdulrahmanahmedelabed-prog/hader/releases" style="color:inherit">كل الإصدارات</a></p>
+  <p class="dl-meta">الإصدار 1.5 · ويندوز 10 و11 (64 بت) · <a href="#releases" style="color:inherit">كل الإصدارات</a></p>
+  <div id="releases" class="rel-list"><h3>كل الإصدارات</h3><ul><li class="rel-wait">جارٍ تحميل قائمة الإصدارات…</li></ul></div>
 </div></section>
 
 <footer><div class="wrap">حاضر 1.5 — نظام الحضور والانصراف لأجهزة البصمة والوجه والكف</div></footer>
+<script>
+// every version, listed here so visitors stay on this page; each downloads straight from the releases store
+(function () {
+  var box = document.getElementById('releases');
+  fetch('https://api.github.com/repos/abdulrahmanahmedelabed-prog/hader/releases?per_page=20')
+    .then(function (r) { return r.ok ? r.json() : []; })
+    .then(function (list) {
+      var ul = box.querySelector('ul'), rows = [];
+      (list || []).forEach(function (rel) {
+        var setup = (rel.assets || []).filter(function (a) { return a.name === 'Hader-Setup.exe'; })[0];
+        if (!setup || rel.draft) return;
+        var li = document.createElement('li');
+        var b = document.createElement('b'); b.textContent = (rel.tag_name || '').replace(/^v/i, 'الإصدار ');
+        var sm = document.createElement('small'); sm.textContent = (rel.published_at || '').slice(0, 10) + ' · ' + Math.round(setup.size / 1048576) + ' ميغابايت';
+        var a = document.createElement('a'); a.href = setup.browser_download_url; a.textContent = 'تحميل';
+        li.append(b, sm, a); rows.push(li);
+      });
+      if (!rows.length) {
+        var li = document.createElement('li'); li.textContent = 'يُنشر أول إصدار هنا قريباً.'; rows.push(li);
+      }
+      ul.innerHTML = '';
+      rows.forEach(function (li) { ul.appendChild(li); });
+    })
+    .catch(function () { box.querySelector('ul').innerHTML = '<li>تعذّر تحميل القائمة الآن؛ زر «تحميل البرنامج» يحمّل أحدث إصدار دائماً.</li>'; });
+})();
+</script>
 </body>
 </html>
