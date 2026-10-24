@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'sha256-E9wyeda9H7HLDyUT7N7iNx3M0g1sWpnce9NatWsCj4A='; connect-src https://api.github.com; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <title>حاضر — نظام الحضور والانصراف لأجهزة البصمة</title>
-<meta name="description" content="حاضر: نظام حضور وانصراف مستقل لأجهزة البصمة والوجه والكف. يكتشف الأجهزة وحده، يقرأ كل شيء لحظياً، بوابة جوال للموظفين، تنبيهات فورية، وتقارير Excel — على حاسوبك وبياناتك عندك.">
+<meta name="description" content="حاضر: نظام حضور وانصراف مستقل لأجهزة البصمة والوجه والكف. يكتشف الأجهزة وحده، يقرأ كل شيء لحظياً، بوابة جوال للموظفين، مساعد ذكي بالعربية، تكامل مع Oracle APEX، تنبيهات فورية، وتقارير Excel — على حاسوبك وبياناتك عندك.">
 <meta property="og:title" content="حاضر — نظام الحضور والانصراف">
 <meta property="og:description" content="أجهزة البصمة والوجه والكف، لوحة حيّة، بوابة جوال للموظف، تنبيهات، وتقارير — بالعربية والإنجليزية.">
 <meta property="og:image" content="shots/dashboard.png">
@@ -191,20 +191,20 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
 
 <nav class="nav"><div class="wrap">
   <a class="brand" href="#top"><span class="mark">ح</span>حاضر</a>
-  <ul><li><a href="#features">المزايا</a></li><li><a href="#how">كيف يعمل</a></li><li><a href="#screens">من داخل البرنامج</a></li><li><a href="#compare">المقارنة</a></li><li><a href="#faq">أسئلة</a></li></ul>
+  <ul><li><a href="#features">المزايا</a></li><li><a href="#ai">المساعد الذكي</a></li><li><a href="#apex">أوراكل أبكس</a></li><li><a href="#how">كيف يعمل</a></li><li><a href="#screens">من داخل البرنامج</a></li><li><a href="#compare">المقارنة</a></li><li><a href="#faq">أسئلة</a></li></ul>
   <a class="btn primary small" href="#download">تحميل البرنامج</a>
 </div></nav>
 
 <header class="hero" id="top"><div class="wrap">
   <div>
-    <span class="pill"><i></i>الإصدار 1.5 · عربي وإنجليزي</span>
+    <span class="pill"><i></i>الإصدار 1.8 · عربي وإنجليزي</span>
     <h1>الحضور والانصراف<br><em>كما يجب أن يكون.</em></h1>
     <p class="lead">حاضر يتحدث مع أجهزة البصمة والوجه والكف بنفسه: يكتشفها وحده، يقرأ كل حركة لحظة حدوثها، ويعطي كل موظف تطبيقاً على جواله — وكل بياناتك تبقى على حاسوبك.</p>
     <div class="cta">
       <a class="btn primary" href="https://github.com/abdulrahmanahmedelabed-prog/hader/releases/latest/download/Hader-Setup.exe">تحميل البرنامج</a>
       <a class="btn ghost" href="#screens">شاهد البرنامج</a>
     </div>
-    <div class="chips"><span>بصمة الإصبع</span><span>الوجه</span><span>الكف</span><span>البطاقة</span><span>بدون برنامج وسيط</span><span>بدون إنترنت</span></div>
+    <div class="chips"><span>بصمة الإصبع</span><span>الوجه</span><span>الكف</span><span>البطاقة</span><span>مساعد ذكي بالعربية</span><span>Oracle APEX</span><span>بدون برنامج وسيط</span><span>بدون إنترنت</span></div>
   </div>
   <div class="stage" aria-hidden="true">
     <img class="term" src="shots/panel-idle.png" alt="">
@@ -215,8 +215,8 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
 </div></header>
 
 <div class="stats"><div class="wrap"><div class="grid">
-  <div class="stat"><b>٣٠٠٠+</b><span>موظف و١٠ أجهزة في اختبار التحمّل</span></div>
-  <div class="stat"><b>١٣</b><span>تقريراً مع Excel وCSV والطباعة</span></div>
+  <div class="stat"><b>١٠٬٠٠٠</b><span>موظف و٢٠ جهازاً في اختبار التحمّل</span></div>
+  <div class="stat"><b>١٦</b><span>تقريراً مع Excel وCSV والطباعة</span></div>
   <div class="stat"><b>٤</b><span>قنوات تنبيه: البرنامج، البريد، تيليجرام، Webhook</span></div>
   <div class="stat"><b>٠</b><span>اشتراكات سحابية — قاعدة البيانات عندك</span></div>
 </div></div></div>
@@ -235,7 +235,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
     <div class="card c2">
       <span class="ic" style="background:linear-gradient(135deg,#5b8def,#3a56c8)">📱</span>
       <h3>بوابة الموظف على الجوال</h3>
-      <p>يرى الموظف دوامه اليوم وسجلّه الشهري وأرصدة إجازاته، ويرسل طلب إجازة أو تصحيح بصمة أو عمل إضافي من جواله. تُثبَّت كتطبيق.</p>
+      <p>يرى الموظف دوامه اليوم وسجلّه الشهري وأرصدة إجازاته، ويرسل طلب إجازة أو تصحيح بصمة أو عمل إضافي من جواله. تُثبَّت كتطبيق، ويدخل بحساب المؤسسة (Microsoft 365) أو بكلمة مرور البوابة.</p>
       <ul class="ticks"><li>من الشبكة أو من البيت بأمان</li><li>بطاقات دخول برمز QR</li><li>عربي وإنجليزي ووضع ليلي</li></ul>
     </div>
     <div class="card c2">
@@ -251,13 +251,13 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
     <div class="card c2">
       <span class="ic" style="background:linear-gradient(135deg,#d03b3b,#9b1c1c)">🔔</span>
       <h3>تنبيهات في وقتها</h3>
-      <p>التأخير، الغياب، بصمة الخروج الناقصة، انقطاع جهاز، طلب جديد — داخل البرنامج وبالبريد وتيليجرام، مع ساعات هدوء وتقرير أسبوعي.</p>
+      <p>التأخير، الغياب، بصمة الخروج الناقصة، انقطاع جهاز، طلب جديد — في جرس البرنامج وبالبريد وتيليجرام، مع ملخص يومي وساعات هدوء وتقرير أسبوعي. ويعرف مسؤول القسم أخبار قسمه فقط.</p>
     </div>
     <div class="card c3">
       <span class="ic" style="background:linear-gradient(135deg,#4a3aa7,#2e2380)">🗓</span>
       <h3>دوام حقيقي، لا جدول ثابت</h3>
       <p>أوقات دوام وورديات دورية وجداول للأقسام والأفراد، ودوام ليلي ومرن، وعطل رسمية، وإجازات وعمل إضافي وبصمات يدوية مع الاعتماد.</p>
-      <ul class="ticks"><li>جدول مؤقت ليوم واحد</li><li>قواعد التأخير والسماح والإضافي</li><li>تقويم لكل موظف</li></ul>
+      <ul class="ticks"><li>تعديل الدوام لفترة أو من تاريخ، والأشهر الماضية لا تتغير</li><li>جدول مؤقت ليوم واحد</li><li>قواعد التأخير والسماح والإضافي</li><li>تقويم لكل موظف</li></ul>
     </div>
     <div class="card c3">
       <span class="ic" style="background:linear-gradient(135deg,#2a78d6,#1d4f9a)">📊</span>
@@ -271,10 +271,75 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
       <p>بصمة سُجِّلت على جهاز تصل لكل أجهزة منطقتها، والموظف الجديد يُرسَل لأجهزته، والمستقيل يُحذف منها — تلقائياً.</p>
     </div>
     <div class="card c3">
+      <span class="ic" style="background:linear-gradient(135deg,#0e8f86,#0b5a6e)">✅</span>
+      <h3>اعتماد الطلبات حسب القسم</h3>
+      <p>مسؤول القسم ونائبه يرون طلبات موظفي قسمهم والأقسام التابعة له ويعتمدونها، والمدير العام يعتمد طلبات كل الأقسام. للنائب فترة محددة أو دائمة.</p>
+    </div>
+    <div class="card c3">
+      <span class="ic" style="background:linear-gradient(135deg,#7b3fb0,#4a2380)">🔐</span>
+      <h3>صلاحيات لكل صفحة وتقرير</h3>
+      <p>أدوار بصلاحيات واضحة: عرض الموظفين أو تعديلهم، الأجهزة، الحضور، الاعتماد، التقارير، المساعد الذكي. ولكل دور التقارير والصفحات التي يراها فقط.</p>
+    </div>
+    <div class="card c3">
       <span class="ic" style="background:linear-gradient(135deg,#475569,#1e293b)">🤝</span>
       <h3>يعمل بجانب برنامجك الحالي</h3>
       <p>إن كان برنامج آخر يستقبل الأجهزة الآن، يعمل حاضر في وضع «القراءة فقط» دون أن يغيّر شيئاً، وينتقل للوضع الكامل حين تقرر.</p>
     </div>
+  </div>
+</div></section>
+
+<section class="block" id="ai"><div class="wrap">
+  <div class="kicker">مساعد حاضر</div>
+  <h2>اسأل بالعربية، يجيبك من بياناتك</h2>
+  <p class="sub">خبير في البرنامج وفي إدارة الموارد البشرية، يقرأ الحضور والموظفين والتقارير بصلاحيات من يسأله فقط، ويرد بلغة واجهتك.</p>
+  <div class="bento">
+    <div class="card dark c3">
+      <span class="ic" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)">✨</span>
+      <h3>تحليل وتوصيات في ثوانٍ</h3>
+      <p>«حلّل الغياب في الشهر الماضي وأعطني توصيات»، «من تأخر أكثر من ثلاث مرات هذا الأسبوع؟»، «قارن حضور الأقسام». يشغّل التقارير بنفسه ويشرح النتائج.</p>
+      <ul class="ticks"><li>يجهّز ملف Excel بعناوين عربية</li><li>يعرض صور الموظفين أو يجمعها في ملف ZIP</li><li>يقرأ ما ترفقه: صوراً وPDF وجداول Excel</li></ul>
+    </div>
+    <div class="card c3">
+      <span class="ic" style="background:linear-gradient(135deg,#19b3a7,#0e8f86)">🛡</span>
+      <h3>لا ينفّذ شيئاً دون موافقتك</h3>
+      <p>يقترح التعديل في بطاقة واضحة — إضافة إجازة، تصحيح بصمة، استيراد موظفين من ملف — وأنت تقرر التنفيذ أو التجاهل. كل اقتراح بصلاحياتك أنت.</p>
+      <ul class="ticks"><li>يكمل الرد وأنت في صفحة أخرى</li><li>عدة أسئلة في وقت واحد</li><li>مكتبة لوثائق مؤسستك يقرأ منها</li></ul>
+    </div>
+    <div class="card c2">
+      <span class="ic" style="background:linear-gradient(135deg,#2a78d6,#1d4f9a)">🔌</span>
+      <h3>أنت تختار النموذج</h3>
+      <p>Claude من Anthropic، أو Gemini بمفتاح مجاني، أو نموذج محلي يعمل داخل شبكتك دون إنترنت. مع حد يومي وميزانية شهرية.</p>
+    </div>
+    <div class="card c2">
+      <span class="ic" style="background:linear-gradient(135deg,#d03b3b,#9b1c1c)">🔒</span>
+      <h3>خصوصية مقصودة</h3>
+      <p>متوقف حتى يفعّله المدير. لا تصله أرقام الهوية ولا الهواتف ولا البريد ولا العناوين ولا القوالب الحيوية ولا الصور المحفوظة.</p>
+    </div>
+    <div class="card c2">
+      <span class="ic" style="background:linear-gradient(135deg,#f59e0b,#d9480f)">🏛</span>
+      <h3>في البرنامج وفي أبكس</h3>
+      <p>نافذة المساعد في كل صفحة من حاضر، وصفحة كاملة له في تطبيق Oracle APEX، بالمحادثات نفسها وإعداده من الطرفين.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="block" id="apex"><div class="wrap">
+  <div class="kicker">حاضر لأوراكل أبكس</div>
+  <h2>حضورك داخل أنظمة مؤسستك على Oracle</h2>
+  <p class="sub">لمن يعمل على Oracle وAPEX: تطبيق أبكس جاهز بشاشات حاضر نفسها، وقاعدة بيانات واحدة يعمل عليها الطرفان — قبل نقل العمل كله إلى أوراكل وبعده.</p>
+  <div class="two">
+    <div class="card"><h3>تطبيق أبكس كامل، يُستورد ولا يُبنى</h3><ul class="ticks">
+      <li>لوحة التحكم والمراقبة الحية والموظفون والأجهزة والدوام والإجازات والتقارير، بشكل حاضر نفسه.</li>
+      <li>«بوابتي» لكل موظف داخل أنظمة المؤسسة: حضوره اليوم وسجله الشهري وطلباته ورصيد إجازاته.</li>
+      <li>صفحة دخول جميلة لحاضر في تطبيق المؤسسة الرئيسي، بأرقام اليوم وبطاقات تفتح كل قسم بالجلسة نفسها.</li>
+      <li>كل صفحة بصلاحيتها: لا يفتح أحد صفحة بكتابة رقمها في العنوان.</li>
+    </ul></div>
+    <div class="card"><h3>قاعدة بيانات واحدة، في الاتجاهين</h3><ul class="ticks">
+      <li>الموظفون والإجازات من نظام الموارد البشرية، والحركات والنتائج اليومية إليه، باتصال مشفّر.</li>
+      <li>ما يُعدَّل في أبكس يصل إلى حاضر، وما يُعدَّل في حاضر يصل إلى أبكس: الدوام المؤرخ ومسؤولو الاعتماد والحسابات.</li>
+      <li>نقل العمل كله إلى أوراكل بخطوة: محرك الحضور والأجهزة والتنبيهات داخل قاعدة البيانات، وحاضر بوابة تمرّ منها الأجهزة.</li>
+      <li>يعمل على Oracle 11g فأحدث وAPEX 19.2 فأحدث.</li>
+    </ul></div>
   </div>
 </div></section>
 
@@ -332,6 +397,10 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
       <tr><td>تنبيهات تأخير وغياب وانقطاع أجهزة (بريد وتيليجرام)</td><td class="no">—</td><td class="us">✓</td></tr>
       <tr><td>إعدادات الجهاز عن بُعد: دقة التعرف، مكافحة الانتحال، الساعة، الخادم</td><td class="no">من أمام الجهاز</td><td class="us">من مكتبك</td></tr>
       <tr><td>العمل جنباً إلى جنب مع برنامج آخر دون تعارض</td><td class="no">—</td><td class="us">وضع القراءة فقط</td></tr>
+      <tr><td>مساعد ذكي يجيب بالعربية من بياناتك ويجهّز الملفات</td><td class="no">—</td><td class="us">✓</td></tr>
+      <tr><td>اعتماد الطلبات حسب القسم ومسؤوله ونائبه</td><td class="no">—</td><td class="us">✓</td></tr>
+      <tr><td>تعديل الدوام لفترة دون المساس بالأشهر الماضية</td><td class="no">يغيّر الماضي أو يدوياً</td><td class="us">✓</td></tr>
+      <tr><td>تكامل مع Oracle وAPEX ونظام الموارد البشرية</td><td class="no">—</td><td class="us">✓</td></tr>
       <tr><td>نسخ احتياطي يومي تلقائي</td><td class="no">يدوياً</td><td class="us">✓</td></tr>
     </tbody>
   </table></div>
@@ -343,7 +412,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
   <div class="two">
     <div class="card"><ul class="ticks">
       <li>يعمل على حاسوبك داخل شبكتك، وقاعدة البيانات ملف عندك في <code>C:\ProgramData\Hader</code>.</li>
-      <li>لا يحتاج إنترنت في العمل اليومي؛ فقط للتحديثات ولإرسال التنبيهات إن فعّلتها.</li>
+      <li>لا يحتاج إنترنت في العمل اليومي؛ فقط للتحديثات ولإرسال التنبيهات إن فعّلتها، وللمساعد الذكي إن اخترت نموذجاً سحابياً.</li>
       <li>نسخة احتياطية تلقائية كل يوم، واستعادة بنقرة.</li>
       <li>وضع «القراءة فقط» لا يكتب على الأجهزة شيئاً.</li>
     </ul></div>
@@ -352,6 +421,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
       <li>الموظف يرى بياناته فقط، بكلمة مرور خاصة به وقفل بعد المحاولات الخاطئة.</li>
       <li>كلمات المرور مشفّرة، وكلمات مرور البريد وتيليجرام لا تُعرض بعد حفظها.</li>
       <li>صور البصمة الملتقطة مع كل حركة متوقفة افتراضياً.</li>
+      <li>المساعد الذكي متوقف حتى يفعّله المدير، ومفتاحه يُحفظ مشفّراً في الخادم وحده.</li>
     </ul></div>
   </div>
 </div></section>
@@ -363,6 +433,8 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
   <details><summary>عندي برنامج آخر يستقبل الأجهزة الآن، هل أوقفه؟</summary><p>لا. يعمل حاضر في وضع «القراءة فقط» ويقرأ الأجهزة مباشرة كل دقيقة دون أن يكتب عليها. حين تريد الانتقال الكامل، حرّر المنفذ 90 فيأخذه حاضر خلال ثوانٍ.</p></details>
   <details><summary>هل يحتاج إنترنت؟</summary><p>لا. العمل اليومي كله داخل شبكتك؛ الإنترنت للتحديثات فقط، وإن أردت إرسال التنبيهات بالبريد أو تيليجرام.</p></details>
   <details><summary>كيف يستخدم الموظفون البوابة؟ وهل تعمل من البيت؟</summary><p>من صفحة «بوابة الموظف» تُصدر كلمات المرور وتُطبع بطاقات فيها رمز QR، فيمسحه الموظف بكاميرا جواله ويضيف البوابة للشاشة الرئيسية. تعمل داخل شبكة المؤسسة، ومن البيت عبر رابط آمن (HTTPS) يُفتح بخطوة واحدة — والمنفذ المفتوح للإنترنت يخدم البوابة فقط، فلا تظهر صفحات الإدارة ولا الأجهزة خارج المؤسسة.</p></details>
+  <details><summary>نعمل على Oracle وAPEX، هل يناسبنا؟</summary><p>نعم. يأتي حاضر بتطبيق APEX جاهز يُستورد في مساحة عملكم، وبسكربت يُشغَّل من SQL Workshop دون SQL*Plus. يبدأ حاضر بتبادل البيانات مع نظام الموارد البشرية، ويمكن لاحقاً نقل العمل كله إلى أوراكل وتبقى الأجهزة متصلة عبر حاضر. يعمل على Oracle 11g فأحدث وAPEX 19.2 فأحدث.</p></details>
+  <details><summary>هل يرى المساعد الذكي كل البيانات؟</summary><p>لا. يقرأ فقط ما تسمح به صلاحيات من يسأله، ولا تصله أرقام الهوية والهواتف والبريد والعناوين والقوالب الحيوية ولا الصور المحفوظة. وهو متوقف حتى يفعّله المدير، ويمكن تشغيله بنموذج محلي داخل شبكتكم.</p></details>
   <details><summary>هل يمكن تحويل الواجهة للإنجليزية؟</summary><p>نعم، بزر واحد: الواجهة والتقارير وأسماء الأقسام والأجهزة، وأسماء الموظفين تُكتب بالحروف اللاتينية تلقائياً أو بالاسم الإنجليزي إن أدخلته.</p></details>
   <details><summary>نسيت كلمة مرور المدير</summary><p>شغّل <code>reset_password.bat</code> على الحاسوب الذي يعمل عليه البرنامج، فتعود إلى admin / admin ويُطلب تغييرها عند الدخول.</p></details>
 </div></section>
@@ -379,11 +451,11 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
     <li>يفتح «مدير خادم حاضر» بعد التثبيت: اضغط «فتح البرنامج» وادخل بالمستخدم <bdi>admin</bdi> وكلمة المرور الأولى الظاهرة فيه، ثم غيّرها.</li>
     <li>للتفعيل بعد التجربة: «حول البرنامج» ← أرسل «رمز الجهاز» إلينا والصق المفتاح الذي يصلك.</li>
   </ol>
-  <p class="dl-meta">الإصدار 1.5 · ويندوز 10 و11 (64 بت) · <a href="#releases" style="color:inherit">كل الإصدارات</a></p>
+  <p class="dl-meta">الإصدار 1.8 · ويندوز 10 و11 (64 بت) · <a href="#releases" style="color:inherit">كل الإصدارات</a></p>
   <div id="releases" class="rel-list"><h3>كل الإصدارات</h3><ul><li class="rel-wait">جارٍ تحميل قائمة الإصدارات…</li></ul></div>
 </div></section>
 
-<footer><div class="wrap">حاضر 1.5 — نظام الحضور والانصراف لأجهزة البصمة والوجه والكف</div></footer>
+<footer><div class="wrap">حاضر 1.8 — نظام الحضور والانصراف لأجهزة البصمة والوجه والكف</div></footer>
 <script>
 // every version, listed here so visitors stay on this page; each downloads straight from the releases store
 (function () {
