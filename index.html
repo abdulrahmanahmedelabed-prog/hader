@@ -11,7 +11,9 @@
 <meta property="og:description" content="أجهزة البصمة والوجه والكف، لوحة حيّة، بوابة جوال للموظف، تنبيهات، وتقارير — بالعربية والإنجليزية.">
 <meta property="og:image" content="shots/dashboard.png">
 <meta name="theme-color" content="#0b1d2a">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230e8f86'/%3E%3Ctext x='16' y='22' font-size='16' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3E%D8%AD%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="brand/hader-mark.svg" type="image/svg+xml">
+<link rel="icon" href="brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
 <style>
 :root {
   --ink: #0b1d2a; --ink-2: #12324a; --teal: #19b3a7; --teal-d: #0e8f86; --mint: #9fe3dc;
@@ -36,8 +38,7 @@ img { max-width: 100%; display: block; }
 .nav { position: sticky; top: 0; z-index: 10; background: rgba(11,29,42,.82); backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid rgba(255,255,255,.06); }
 .nav .wrap { display: flex; align-items: center; gap: 18px; height: 64px; }
 .brand { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 800; font-size: 19px; }
-.mark { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; color: #fff; font-size: 19px;
-  background: linear-gradient(135deg, var(--teal-d), var(--teal)); box-shadow: 0 6px 16px rgba(25,179,167,.4); }
+.mark { width: 36px; height: 36px; border-radius: 10px; display: block; flex: none; box-shadow: 0 6px 16px rgba(20,168,156,.35); }
 .nav ul { display: flex; gap: 4px; list-style: none; margin: 0 auto 0 0; padding: 0; }
 .nav ul a { color: #c9d6e2; padding: 8px 12px; border-radius: 999px; font-size: 15px; }
 .nav ul a:hover { background: rgba(255,255,255,.08); color: #fff; }
@@ -190,7 +191,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
 <body>
 
 <nav class="nav"><div class="wrap">
-  <a class="brand" href="#top"><span class="mark">ح</span>حاضر</a>
+  <a class="brand" href="#top"><img class="mark" src="brand/hader-mark.svg" alt="" width="36" height="36">حاضر</a>
   <ul><li><a href="#features">المزايا</a></li><li><a href="#ai">المساعد الذكي</a></li><li><a href="#apex">أوراكل أبكس</a></li><li><a href="#how">كيف يعمل</a></li><li><a href="#screens">من داخل البرنامج</a></li><li><a href="#compare">المقارنة</a></li><li><a href="#faq">أسئلة</a></li></ul>
   <a class="btn primary small" href="#download">تحميل البرنامج</a>
 </div></nav>
