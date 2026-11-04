@@ -198,7 +198,7 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
 
 <header class="hero" id="top"><div class="wrap">
   <div>
-    <span class="pill"><i></i>الإصدار 1.8 · عربي وإنجليزي</span>
+    <span class="pill"><i></i>الإصدار <span class="hdr-ver">2.3</span> · عربي وإنجليزي</span>
     <h1>الحضور والانصراف<br><em>كما يجب أن يكون.</em></h1>
     <p class="lead">حاضر يتحدث مع أجهزة البصمة والوجه والكف بنفسه: يكتشفها وحده، يقرأ كل حركة لحظة حدوثها، ويعطي كل موظف تطبيقاً على جواله — وكل بياناتك تبقى على حاسوبك.</p>
     <div class="cta">
@@ -455,11 +455,11 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
     <li>يفتح «مدير خادم حاضر» بعد التثبيت: اضغط «فتح البرنامج» وادخل بالمستخدم <bdi>admin</bdi> وكلمة المرور الأولى الظاهرة فيه، ثم غيّرها.</li>
     <li>للتفعيل بعد التجربة: «حول البرنامج» ← أرسل «رمز الجهاز» إلينا والصق المفتاح الذي يصلك.</li>
   </ol>
-  <p class="dl-meta">الإصدار 1.8 · ويندوز 10 و11 (64 بت) · <a href="#releases" style="color:inherit">كل الإصدارات</a></p>
+  <p class="dl-meta">الإصدار <span class="hdr-ver">2.3</span> · ويندوز 10 و11 (64 بت) · <a href="#releases" style="color:inherit">كل الإصدارات</a></p>
   <div id="releases" class="rel-list"><h3>كل الإصدارات</h3><ul><li class="rel-wait">جارٍ تحميل قائمة الإصدارات…</li></ul></div>
 </div></section>
 
-<footer><div class="wrap">حاضر 1.8 — نظام الحضور والانصراف لأجهزة البصمة والوجه والكف</div></footer>
+<footer><div class="wrap">حاضر <span class="hdr-ver">2.3</span> — نظام الحضور والانصراف لأجهزة البصمة والوجه والكف</div></footer>
 <script>
 // every version, listed here so visitors stay on this page; each downloads straight from the releases store
 (function () {
@@ -482,6 +482,14 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
       }
       ul.innerHTML = '';
       rows.forEach(function (li) { ul.appendChild(li); });
+      // the version shown on the page is the newest release's, whatever was written above (no edit per release)
+      var newest = (list || []).filter(function (rel) {
+        return !rel.draft && !rel.prerelease && (rel.assets || []).some(function (a) { return a.name === 'Hader-Setup.exe'; });
+      })[0];
+      if (newest) {
+        var v = (newest.tag_name || '').replace(/^v/i, '');
+        document.querySelectorAll('.hdr-ver').forEach(function (e) { e.textContent = v; });
+      }
     })
     .catch(function () { box.querySelector('ul').innerHTML = '<li>تعذّر تحميل القائمة الآن؛ زر «تحميل البرنامج» يحمّل أحدث إصدار دائماً.</li>'; });
 })();
