@@ -16,9 +16,9 @@ application then reads, writes and synchronises them with a handful of region pl
 
 ## Live demo
 
-https://oracleapex.com/ords/f?p=209149 — sign in as **DEMO**, password **Visitor123!@#** (it sees everything and
-changes nothing). A sample company: 36 employees, 5 terminals, the last weeks' punches; today's punches keep
-arriving. The terminals are simulated: there is no real terminal behind the demo.
+https://oracleapex.com/ords/f?p=210260 — sign in as **DEMO**, password **Visitor123!@#** (it sees everything and
+changes nothing). Every plug-in on a page of its own, over a sample company: 36 employees, 5 terminals, the last
+weeks' punches; today's punches keep arriving. The terminals are simulated: there is no real terminal behind the demo.
 
 ## The plug-ins
 
