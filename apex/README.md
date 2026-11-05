@@ -14,6 +14,12 @@ application then reads, writes and synchronises them with a handful of region pl
 * **Attendance** — shifts, timetables, flexible hours, leave, overtime and the day's result per employee,
   calculated in the database (`HADER_V_ATT_REPORT`).
 
+## Live demo
+
+https://oracleapex.com/ords/f?p=209149 — sign in as **DEMO**, password **Visitor123!@#** (it sees everything and
+changes nothing). A sample company: 36 employees, 5 terminals, the last weeks' punches; today's punches keep
+arriving. The terminals are simulated: there is no real terminal behind the demo.
+
 ## The plug-ins
 
 | Plug-in | Type | What it does |
