@@ -1,6 +1,6 @@
 {
   "name": "Hader for Oracle APEX - Attendance Terminals",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "description": "Fingerprint and face attendance terminals talking straight to your Oracle database through ORDS: read punches, write employees, sync templates between terminals, enrol from a page, and calculate attendance, all from APEX. Includes Hader Cards (any SQL query as cards), an attendance board, an employee calendar, settings and a sync dynamic action. Free for up to 2 terminals; activation keys for more are checked inside the database.",
   "keywords": [
     "attendance",

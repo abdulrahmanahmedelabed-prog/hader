@@ -1387,7 +1387,7 @@ CREATE OR REPLACE PACKAGE HDR_CORE AS
   TYPE t_kv IS TABLE OF NVARCHAR2(4000) INDEX BY VARCHAR2(60);
 
   -- the Hader release these objects belong to: the APEX app warns when it is newer than them
-  c_version CONSTANT VARCHAR2(20) := '2.3.4';
+  c_version CONSTANT VARCHAR2(20) := '2.3.5';
 
   -- TRUE while a terminal's upload is stored: the change triggers stay quiet (the upload distributes
   -- what it changes itself and marks its own days)
