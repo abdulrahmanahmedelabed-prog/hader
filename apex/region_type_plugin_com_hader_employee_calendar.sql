@@ -90,6 +90,23 @@ wwv_flow_api.create_plugin(
 '  return trim(l_code);',
 'end employee;',
 '',
+'-- whether the signed-in user may see this employee: the page item may have been changed in the browser, so in',
+'-- Hader for Oracle APEX whoever does not see the attendance (HDR_UI.may attendance.view) sees only themself',
+'-- (HDR_UI.me_code); with the Hader program alone (no HDR_UI here) the application''s own authorization decides',
+'function may_see (p_region in apex_plugin.t_region, p_emp in varchar2) return boolean is',
+'  l_may varchar2(1);',
+'  l_me  varchar2(100);',
+'begin',
+'  if nvl(p_region.attribute_02, ''ITEM'') <> ''ITEM'' then',
+'    return true;          -- USER_CODE / USER_EMAIL: the signed-in user''s own',
+'  end if;',
+'  execute immediate ''begin :m := '' || obj(p_region, ''HDR_UI'') || ''.may(:u, ''''attendance.view''''); :e := ''',
+'    || obj(p_region, ''HDR_UI'') || ''.me_code(:u); end;'' using out l_may, in v(''APP_USER''), out l_me;',
+'  return l_may = ''Y'' or l_me = p_emp;',
+'exception when others then',
+'  return sqlcode in (-6550, -942, -4043, -201);',
+'end may_see;',
+'',
 'function render (',
 '  p_region              in apex_plugin.t_region,',
 '  p_plugin              in apex_plugin.t_plugin,',
@@ -142,6 +159,10 @@ wwv_flow_api.create_plugin(
 '  l_params apex_exec.t_parameters;',
 '  function hm (p date) return varchar2 is begin return to_char(p, ''HH24:MI''); end;',
 'begin',
+'  if l_emp is not null and not may_see(p_region, l_emp) then',
+'    sys.owa_util.status_line(403, ''Forbidden'', true);',
+'    return null;',
+'  end if;',
 '  -- the employee''s photo (only the employee this region shows)',
 '  if apex_application.g_x01 = ''PHOTO'' then',
 '    begin',
@@ -279,8 +300,12 @@ wwv_flow_api.create_plugin(
 '  apex_json.free_output;',
 '  sys.htp.init;   -- drop the half-written JSON',
 '  apex_json.open_object;',
-'  apex_json.write(''failure'', sqlerrm ||   -- not ''error'': apex.server takes that one for its own',
-'    case when sqlcode = -904 then '' — HADER_V_ATT_REPORT is older than this plug-in: press "Create the link objects" in Hader'' end);',
+'  apex_debug.error(''Hader calendar: %s'', sqlerrm);',
+'  -- the database''s own words to a developer (debug, or signed in to App Builder); to anybody else not',
+'  apex_json.write(''failure'', case when apex_application.g_debug or v(''APP_BUILDER_SESSION'') is not null',
+'    then sqlerrm ||',
+'    case when sqlcode = -904 then '' — HADER_V_ATT_REPORT is older than this plug-in: press "Create the link objects" in Hader'' end',
+'    else ''The region could not be read (run the page with debug for the detail)'' end);   -- not ''error''',
 '  apex_json.close_object;',
 '  return null;',
 'end ajax;'))
@@ -354,7 +379,7 @@ wwv_flow_api.create_plugin_attribute(
 ,p_attribute_type=>'PAGE ITEM'
 ,p_is_required=>false
 ,p_is_translatable=>false
-,p_help_text=>'Page item holding the employee number (EMP_CODE) when "Employee from" is Page item. The calendar reloads when it changes. Protect it (Session State Protection) if users must not see each other.'
+,p_help_text=>'Page item holding the employee number (EMP_CODE) when "Employee from" is Page item. The calendar reloads when it changes. The browser sends it, so with Hader for Oracle APEX a user who does not see the attendance sees only themself whatever it holds; for a self-service page choose a signed-in user option instead.'
 );
 wwv_flow_api.create_plugin_attribute(
  p_id=>wwv_flow_api.id(91734300000008)

@@ -115,7 +115,7 @@ wwv_flow_api.create_plugin(
 '  return apex_plugin.t_region_ajax_result',
 'is',
 '  l_what varchar2(20) := apex_application.g_x01;',
-'  l_emp  varchar2(30) := substr(trim(v(p_region.attribute_02)), 1, 30);   -- session state, not the browser',
+'  l_emp  varchar2(30) := substr(trim(v(p_region.attribute_02)), 1, 30);   -- sent by the browser: HDR_UI checks personnel.view',
 '  l_clob clob;',
 '  l_blob blob;',
 '  l_n    number;',
@@ -194,7 +194,7 @@ wwv_flow_api.create_plugin_attribute(
 ,p_attribute_type=>'PAGE ITEM'
 ,p_is_required=>true
 ,p_is_translatable=>false
-,p_help_text=>'Page item holding the employee number (EMP_CODE). The region reloads when it changes. It is read from session state on the server: protect it (Session State Protection) if users must not open each other.'
+,p_help_text=>'Page item holding the employee number (EMP_CODE). The region reloads when it changes. The browser sends it: the region shows an employee only to a user who sees the employees (personnel.view).'
 );
 wwv_flow_api.create_plugin_attribute(
  p_id=>wwv_flow_api.id(91734600000004)

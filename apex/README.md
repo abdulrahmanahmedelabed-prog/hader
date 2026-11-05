@@ -32,6 +32,36 @@ arriving. The terminals are simulated: there is no real terminal behind the demo
 | Hader Settings | Region | The settings of the terminals, the attendance rules and the edition/activation. *Groups shown* picks what a page shows. |
 | Hader Sync | Dynamic action | Read now, recalculate a period, and wait for the answer. |
 
+## Hader AI — the AI of APEX 24+ for APEX 19.2+
+
+Three plug-ins that bring APEX 24's Generative AI to APEX 19.2 and later (Oracle 11g and later), also on their own
+(`hader_ai_install.sql`, without the rest of Hader):
+
+| Plug-in | Type | What it does |
+|---|---|---|
+| Hader AI Services | Region | The AI services, as *Workspace Utilities → Generative AI* has them: Google Gemini, OpenAI, Anthropic or any OpenAI-compatible server (Ollama, Groq, Mistral, DeepSeek…), the model, the key (written, never shown again) or a Web Credential, and *Test Connection*. |
+| Hader AI Assistant | Region | A conversation on the page (APEX 24's *Show AI Assistant*): your instructions, suggested questions, the rows of your own query as the page's data and, with Hader, questions about the attendance and the terminals answered with the user's own permissions. It only reads. |
+| Hader AI Generate Text | Dynamic action | One answer into a page item (APEX 24's *Generate Text with AI*), the prompt with `#P1_ITEM#` replaced by the items' values. |
+
+Each service is called **from the browser** (nothing to set up in the database — no network ACL, no wallet, Oracle 11g
+included; the key reaches the browsers of the users allowed to use it, so restrict it at the provider: to the API, to
+your site's address, to a daily quota) or **from the database** (the key never leaves it; the database must reach the
+provider over HTTPS, as on apex.oracle.com). In PL/SQL, `HDR_AI.generate(prompt, system, service)` answers like
+`APEX_AI.GENERATE` for a service called from the database. On free tiers a provider may use what it is sent to improve
+its products: for real data use a paid tier or a local model.
+
+**Security.** Who may: with Hader in the schema, its accounts (`ai.use` to use a service, `system.admin` to manage
+them); without it, your application (the page's and the region's authorization — the *Hader AI Services* region then
+requires its *Authorization scheme for changes*). Public users never may. A service called from the database relays
+only its own region's requests, each rebuilt in the database: the service's model, its maximum tokens at most, the
+provider's chat with function tools only (no search, code, files or pictures by address, no streams), so many requests
+a user a minute; and only the answer's text and tool calls, or its error's message, come back. A key or a Web
+Credential stays with the provider and the address it was given for, and a key given to a service called from the
+database never goes to a browser. Only Web Credentials whose Static ID starts with `AI_` are used; on APEX 21.2 and
+later set their *Valid for URLs* to the provider's address (a service is refused a credential without it). The
+providers' own addresses are https; http is for a server of your own (OpenAI-compatible). Links in an answer open only
+for your own site.
+
 ## Free edition
 
 Everything above works with **up to 2 terminals**. For more, open *Settings → Edition and activation*, send the
