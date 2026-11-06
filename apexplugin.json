@@ -1,6 +1,6 @@
 {
   "name": "Hader for Oracle APEX - Attendance Terminals",
-  "version": "2.3.8",
+  "version": "2.3.9",
   "description": "Fingerprint and face attendance terminals talking straight to your Oracle database through ORDS: read punches, write employees, sync templates between terminals, enrol from a page, and calculate attendance, all from APEX. Includes Hader Cards (any SQL query as cards), an attendance board, an employee calendar, settings and a sync dynamic action, and Hader AI: the Generative AI of APEX 24 (AI services, an AI assistant region, Generate Text with AI) for APEX 19.2 and later on Oracle 11g and later, also on its own (Gemini, OpenAI, Anthropic or any OpenAI-compatible server, called from the browser or the database). Free for up to 2 terminals; activation keys for more are checked inside the database. Live demo: https://oracleapex.com/ords/f?p=210260 (user DEMO, password Visitor123!@#).",
   "keywords": [
     "attendance",
