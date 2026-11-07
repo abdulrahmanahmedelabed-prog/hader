@@ -133,6 +133,13 @@ jobs:
           & $iscc /Q "/DAppVersion=$v" installer\Hader.iss
           if ($LASTEXITCODE -ne 0) { throw "Inno Setup failed" }
           Copy-Item dist\installer\Hader-Setup.exe "$env:GITHUB_WORKSPACE\Hader-Setup.exe"
+      # the Oracle part this release needs (hader/version.py ORACLE_VERSION): an installed program waits for
+      # Oracle only when it is older than that, not at every release of the program alone
+      - name: The Oracle part it needs
+        id: oracle
+        working-directory: src
+        shell: bash
+        run: echo "version=$(python -c 'from hader.version import ORACLE_VERSION; print(ORACLE_VERSION)')" >> "$GITHUB_OUTPUT"
       - name: Publish the installer (only it) on this repository's releases
         uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
         with:
@@ -149,6 +156,9 @@ jobs:
             3. التجربة كاملة 30 يوماً. للتفعيل: «حول البرنامج» ← أرسل رمز الجهاز للمزوّد والصق المفتاح.
 
             البيانات في `C:\ProgramData\Hader` ولا يمسّها التحديث ولا الإزالة. النسخ المثبّتة تتحدث من «مدير الخادم» ← التحديثات.
+
+            جزء أوراكل وتطبيق أبكس لهذا الإصدار: ${{ steps.oracle.outputs.version }}
+            <!-- hader-oracle: ${{ steps.oracle.outputs.version }} -->
       - name: Remove the source from the runner
         if: always()
         shell: bash
