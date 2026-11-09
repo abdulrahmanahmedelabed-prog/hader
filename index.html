@@ -186,19 +186,33 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
   .bento { grid-template-columns: 1fr; }
   .c2, .c3, .c4 { grid-column: auto; }
 }
+.pill-new { text-decoration: none; color: inherit; }
+.pill-new b { background: #14b8a6; color: #04201d; border-radius: 999px; padding: 1px 8px; font-size: 12px; margin-inline-end: 6px; }
+.pill-new:hover { border-color: #14b8a6; }
+.int-logos { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0; }
+.int-logos span { border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 16px; font-weight: 700; background: #fff; }
+.int-logos .soon { opacity: .6; font-weight: 400; }
+.int-logos small { color: #64748b; font-weight: 400; margin-inline-start: 4px; }
+.int-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.int-grid .card h3 { margin-top: 0; }
+.timeline { list-style: none; padding: 0; margin: 22px 0; border-inline-start: 2px solid #e2e8f0; }
+.timeline li { position: relative; padding: 0 22px 18px; display: grid; gap: 4px; }
+.timeline li::before { content: ""; position: absolute; inset-inline-start: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #14b8a6; }
+.timeline b { font-size: 15px; }
+.timeline span { color: #475569; }
 </style>
 </head>
 <body>
 
 <nav class="nav"><div class="wrap">
   <a class="brand" href="#top"><img class="mark" src="brand/hader-mark.svg" alt="" width="36" height="36">حاضر</a>
-  <ul><li><a href="#features">المزايا</a></li><li><a href="#ai">المساعد الذكي</a></li><li><a href="#apex">أوراكل أبكس</a></li><li><a href="#how">كيف يعمل</a></li><li><a href="#screens">من داخل البرنامج</a></li><li><a href="#compare">المقارنة</a></li><li><a href="#faq">أسئلة</a></li></ul>
+  <ul><li><a href="#features">المزايا</a></li><li><a href="#ai">المساعد الذكي</a></li><li><a href="#apex">أوراكل أبكس</a></li><li><a href="#integrations">الربط</a></li><li><a href="#how">كيف يعمل</a></li><li><a href="#screens">من داخل البرنامج</a></li><li><a href="#compare">المقارنة</a></li><li><a href="#whatsnew">الجديد</a></li><li><a href="#faq">أسئلة</a></li></ul>
   <a class="btn primary small" href="#download">تحميل البرنامج</a>
 </div></nav>
 
 <header class="hero" id="top"><div class="wrap">
   <div>
-    <span class="pill"><i></i>الإصدار <span class="hdr-ver">2.3</span> · عربي وإنجليزي</span>
+    <a class="pill pill-new" href="#whatsnew"><i></i><b>جديد</b> الإصدار <span class="hdr-ver">2.4.16</span> · الربط مع أي نظام بالإعدادات <span aria-hidden="true">←</span></a>
     <h1>الحضور والانصراف<br><em>كما يجب أن يكون.</em></h1>
     <p class="lead">حاضر يتحدث مع أجهزة البصمة والوجه والكف بنفسه: يكتشفها وحده، يقرأ كل حركة لحظة حدوثها، ويعطي كل موظف تطبيقاً على جواله — وكل بياناتك تبقى على حاسوبك.</p>
     <div class="cta">
@@ -345,6 +359,20 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
   </div>
 </div></section>
 
+<section class="block" id="integrations"><div class="wrap">
+  <div class="kicker">الربط</div>
+  <h2>يرتبط بأي نظام في مؤسستك، بالإعدادات وحدها</h2>
+  <p class="sub">اتصال بقاعدة بيانات النظام، ثم تدفقات تحدد ما يُقرأ وما يُكتب بالجداول والحقول والقيم. حاضر يكتشف جداول الموارد البشرية وحقولها بنفسه، وكل تدفق يعمل مستقلاً بموعده، مع معاينة وتشغيل تجريبي وسجل لكل تشغيل.</p>
+  <div class="int-logos">
+    <span>Oracle <small>11g إلى 23ai</small></span><span>PostgreSQL</span><span>SQLite</span><span>ملفات CSV</span><span>قاعدة حاضر نفسها</span><span class="soon">SQL Server · MySQL <small>قريباً</small></span>
+  </div>
+  <div class="int-grid">
+    <div class="card"><h3>⬅ ما يُقرأ إلى حاضر</h3><p>الموظفون والأقسام، الإجازات وأرصدتها وقواعدها وصلات القرابة، أنواع الدوام وأوقاتها إلى جداول الدوام والورديات، والعطل الرسمية.</p></div>
+    <div class="card"><h3>➡ ما يُكتب من حاضر</h3><p>كل حركة إلى جدول الحركات في نظامك، برقم صف من التسلسل أو فوق أكبر رقم، وتمر الحركات بوقت جهاز خاطئ بالتصحيح أولاً.</p></div>
+    <div class="card"><h3>⚙ إجراءاتك أنت</h3><p>إجراء مخزن في نظامك يُستدعى بعد كل تشغيل، بأعداد التشغيل أو اسم التدفق، ليكمل عمله كما يريد.</p></div>
+  </div>
+</div></section>
+
 <section class="block" id="how"><div class="wrap">
   <div class="kicker">كيف يعمل</div>
   <h2>ثلاث خطوات، ثم يعمل وحده</h2>
@@ -430,6 +458,20 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
   </div>
 </div></section>
 
+<section class="block" id="whatsnew"><div class="wrap">
+  <div class="kicker">الجديد</div>
+  <h2>يتحسّن كل أسبوع، ويتحدّث وحده</h2>
+  <p class="sub">يبحث حاضر عن النسخة الجديدة ويثبّتها في وقت هادئ تختاره، بعد نسخة احتياطية والتحقق من بصمة الملف.</p>
+  <ol class="timeline">
+    <li><b>2.4.16</b><span>الربط بالإعدادات لكل بيانات الموارد البشرية: أنواع الدوام وأوقاتها، العطل، أرصدة الإجازات وقواعدها، وإجراء بعد كل تشغيل؛ وصفحة تكامل جديدة.</span></li>
+    <li><b>2.4.15</b><span>الخروج من وضع البوابة بالترتيب: لا حركة تضيع ولا أمر يُرسل مرتين، ويبقى أبكس يرى كل حركة.</span></li>
+    <li><b>2.4.13</b><span>تصحيح وقت الحركات بالتحديد: «تحديد الكل» أو بعضها، ولا ترحيل قبل القرار.</span></li>
+    <li><b>2.4.12</b><span>ضبط ساعة الجهاز العائد بعد انقطاع الكهرباء خلال ثوانٍ.</span></li>
+    <li><b>2.4.3</b><span>اكتشاف تلقائي لجداول نظامك وحقوله وقيمه.</span></li>
+  </ol>
+  <p><a href="#releases">كل الإصدارات وتنزيلها ←</a></p>
+</div></section>
+
 <section class="block" id="faq"><div class="wrap">
   <div class="kicker">أسئلة شائعة</div>
   <h2>قبل أن تبدأ</h2>
@@ -456,11 +498,11 @@ footer { text-align: center; color: var(--muted); font-size: 14px; padding: 26px
     <li>يفتح «مدير خادم حاضر» بعد التثبيت: اضغط «فتح البرنامج» وادخل بالمستخدم <bdi>admin</bdi> وكلمة المرور الأولى الظاهرة فيه، ثم غيّرها.</li>
     <li>للتفعيل بعد التجربة: «حول البرنامج» ← أرسل «رمز الجهاز» إلينا والصق المفتاح الذي يصلك.</li>
   </ol>
-  <p class="dl-meta">الإصدار <span class="hdr-ver">2.3</span> · ويندوز 10 و11 (64 بت) · <a href="#releases" style="color:inherit">كل الإصدارات</a></p>
+  <p class="dl-meta">الإصدار <span class="hdr-ver">2.4.16</span> · ويندوز 10 و11 (64 بت) · <a href="#releases" style="color:inherit">كل الإصدارات</a></p>
   <div id="releases" class="rel-list"><h3>كل الإصدارات</h3><ul><li class="rel-wait">جارٍ تحميل قائمة الإصدارات…</li></ul></div>
 </div></section>
 
-<footer><div class="wrap">حاضر <span class="hdr-ver">2.3</span> — نظام الحضور والانصراف لأجهزة البصمة والوجه والكف</div></footer>
+<footer><div class="wrap">حاضر <span class="hdr-ver">2.4.16</span> — نظام الحضور والانصراف لأجهزة البصمة والوجه والكف</div></footer>
 <script>
 // every version, listed here so visitors stay on this page; each downloads straight from the releases store
 (function () {
