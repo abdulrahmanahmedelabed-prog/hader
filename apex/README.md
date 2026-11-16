@@ -78,9 +78,11 @@ the limit are refused politely: they keep their punches and send them once a key
 
 ## Install
 
-1. In the schema of your APEX application, run **`hader_apex_install.sql`** (SQL*Plus, SQL Developer, or
-   *SQL Workshop → SQL Scripts*). It creates the `HDR_*` / `HADER_*` objects and a one-minute scheduler job.
-   Run it again to upgrade; `hader_apex_uninstall.sql` removes exactly what it created.
+1. In the schema of your APEX application, run **`hader_apex_install.sql`** (SQL*Plus or SQL Developer). It creates
+   the `HDR_*` / `HADER_*` objects and a one-minute scheduler job. *SQL Workshop → SQL Scripts* takes about 500 KB a
+   script, so there run the same in parts instead: **`hader_apex_install_1.sql`**, then `_2`, `_3` and so on to the
+   last one (the first line of each names the next), each after the one before has finished. Run it again to upgrade; `hader_apex_uninstall.sql` removes exactly what it
+   created.
 2. Run **`hdr_ords.sql`** in the same schema to publish the terminals' address with ORDS.
 3. In your application: *Shared Components → Plug-ins → Import* each `*_plugin_com_hader_*.sql` file you need.
 4. On each terminal: *Communication → Cloud server*: your server's address and port, *Domain name* off.
