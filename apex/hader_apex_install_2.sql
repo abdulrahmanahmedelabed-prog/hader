@@ -557,7 +557,7 @@ CREATE OR REPLACE PACKAGE HDR_CORE AS
   TYPE t_kv IS TABLE OF NVARCHAR2(4000) INDEX BY VARCHAR2(60);
 
   -- the Hader release these objects belong to: the APEX app warns when it is newer than them
-  c_version CONSTANT VARCHAR2(20) := '2.4.25';
+  c_version CONSTANT VARCHAR2(20) := '2.4.26';
 
   -- TRUE while a terminal's upload is stored: the change triggers stay quiet (the upload distributes
   -- what it changes itself and marks its own days)
@@ -1105,6 +1105,21 @@ CREATE OR REPLACE PACKAGE HDR_UI AS
   -- APEX app 141 their permissions open (the same rules as its pages); nobody: nothing at all
   FUNCTION landing (p_user IN VARCHAR2) RETURN CLOB;
   FUNCTION landing_today (p_user IN VARCHAR2) RETURN CLOB;   -- today at a glance, for whoever may see attendance
+  -- the same page of APEX's own components (no plug-in, no script): its rows for ordinary queries, the user always
+  -- the session's own. landing_shown: Y for whoever Hader knows (an account or an employee), else nothing shows;
+  -- landing_first: the page its entrance button opens (1 the system, 77 the portal, NULL none); landing_parts: the
+  -- parts of APEX app 141 the user's permissions open, as a Cards report takes them (CARD_TITLE, CARD_TEXT,
+  -- CARD_LINK, CARD_ICON); landing_figures: today at a glance for whoever may see attendance (LABEL, VALUE)
+  TYPE t_land_part IS RECORD (SEQ NUMBER, PAGE_ID NUMBER, CARD_TITLE VARCHAR2(200), CARD_TEXT VARCHAR2(400),
+                              CARD_ICON VARCHAR2(60), CARD_LINK VARCHAR2(400));
+  TYPE t_land_parts IS TABLE OF t_land_part;
+  TYPE t_land_figure IS RECORD (SEQ NUMBER, LABEL VARCHAR2(200), VALUE VARCHAR2(60));
+  TYPE t_land_figures IS TABLE OF t_land_figure;
+  FUNCTION landing_shown (p_user IN VARCHAR2) RETURN VARCHAR2;
+  FUNCTION landing_first (p_user IN VARCHAR2) RETURN NUMBER;
+  FUNCTION landing_parts (p_user IN VARCHAR2, p_app IN VARCHAR2 DEFAULT '141', p_session IN VARCHAR2 DEFAULT NULL)
+    RETURN t_land_parts PIPELINED;
+  FUNCTION landing_figures (p_user IN VARCHAR2) RETURN t_land_figures PIPELINED;
   -- the dashboard (page 1) as the program's: today, the last 14 days, hours, departments, terminals, punches
   FUNCTION dashboard (p_user IN VARCHAR2) RETURN CLOB;
   -- the biometrics page (32): the terminals next to what is stored; p_fetch 'Y': all of them asked for all they hold
