@@ -139,7 +139,14 @@ jobs:
         id: oracle
         working-directory: src
         shell: bash
-        run: echo "version=$(python -c 'from hader.version import ORACLE_VERSION; print(ORACLE_VERSION)')" >> "$GITHUB_OUTPUT"
+        run: |
+          echo "version=$(python -c 'from hader.version import ORACLE_VERSION; print(ORACLE_VERSION)')" >> "$GITHUB_OUTPUT"
+          # changed with this release (raised to its version) or not: said plainly, so nobody installs it for nothing
+          if [ "$(python -c 'from hader.version import ORACLE_VERSION, VERSION; print(ORACLE_VERSION == VERSION)')" = "True" ]; then
+            echo "note=تغيّر في هذا الإصدار. ثبّته إن كنت تستخدم تطبيق أبكس." >> "$GITHUB_OUTPUT"
+          else
+            echo "note=لم يتغيّر في هذا الإصدار، فلا حاجة لتثبيته من جديد." >> "$GITHUB_OUTPUT"
+          fi
       - name: Publish the installer (only it) on this repository's releases
         uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
         with:
@@ -157,7 +164,9 @@ jobs:
 
             البيانات في `C:\ProgramData\Hader` ولا يمسّها التحديث ولا الإزالة. النسخ المثبّتة تتحدث من «مدير الخادم» ← التحديثات.
 
-            جزء أوراكل وتطبيق أبكس لهذا الإصدار: ${{ steps.oracle.outputs.version }}
+            ### جزء أوراكل وتطبيق أبكس (${{ steps.oracle.outputs.version }})
+            مستقلان عن حاضر، ولا يحتاجهما حاضر ليعمل. هما لمن يستخدم تطبيق أبكس، ولوضع البوابة الذي تكون فيه الأجهزة عند أوراكل.
+            ${{ steps.oracle.outputs.note }}
             <!-- hader-oracle: ${{ steps.oracle.outputs.version }} -->
       - name: Remove the source from the runner
         if: always()
